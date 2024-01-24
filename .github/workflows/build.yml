@@ -1,0 +1,11 @@
+on:
+  push:
+  repository_dispatch:
+    types:
+      - snapshot_update
+jobs:
+  build:
+    uses: gardenlinux/package-build-ng/.github/workflows/build.yml@main
+    with:
+      release: ${{ github.ref == 'refs/heads/main' }}
+      build_dep: gardenlinux/package-libyang2-ng 2.1.148-0gardenlinux0
